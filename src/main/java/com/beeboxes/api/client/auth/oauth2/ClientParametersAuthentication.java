@@ -76,17 +76,17 @@ public class ClientParametersAuthentication
       HttpExecuteInterceptor {
 
   /** Client identifier issued to the client during the registration process. */
-  private final String clientId;
+  private final String appId;
 
   /** Client secret or {@code null} for none. */
   private final String clientSecret;
 
   /**
-   * @param clientId client identifier issued to the client during the registration process
+   * @param appId client identifier issued to the client during the registration process
    * @param clientSecret client secret or {@code null} for none
    */
-  public ClientParametersAuthentication(String clientId, String clientSecret) {
-    this.clientId = Preconditions.checkNotNull(clientId);
+  public ClientParametersAuthentication(String appId, String clientSecret) {
+    this.appId = Preconditions.checkNotNull(appId);
     this.clientSecret = clientSecret;
   }
 
@@ -96,15 +96,15 @@ public class ClientParametersAuthentication
 
   public void intercept(HttpRequest request) throws IOException {
     Map<String, Object> data = Data.mapOf(UrlEncodedContent.getContent(request).getData());
-    data.put("client_id", clientId);
+    data.put("client_id", appId);
     if (clientSecret != null) {
       data.put("client_secret", clientSecret);
     }
   }
 
   /** Returns the client identifier issued to the client during the registration process. */
-  public final String getClientId() {
-    return clientId;
+  public final String getAppId() {
+    return appId;
   }
 
   /** Returns the client secret or {@code null} for none. */

@@ -80,7 +80,7 @@ public class AuthorizationCodeFlow {
   private final HttpExecuteInterceptor clientAuthentication;
 
   /** Client identifier. */
-  private final String clientId;
+  private final String appId;
 
   /** Authorization server encoded URL. */
   private final String authorizationServerEncodedUrl;
@@ -117,7 +117,7 @@ public class AuthorizationCodeFlow {
    * @param tokenServerUrl token server URL
    * @param clientAuthentication client authentication or {@code null} for none (see
    *        {@link TokenRequest#setClientAuthentication(HttpExecuteInterceptor)})
-   * @param clientId client identifier
+   * @param appId client identifier
    * @param authorizationServerEncodedUrl authorization server encoded URL
    *
    * @since 1.14
@@ -127,14 +127,14 @@ public class AuthorizationCodeFlow {
       JsonFactory jsonFactory,
       GenericUrl tokenServerUrl,
       HttpExecuteInterceptor clientAuthentication,
-      String clientId,
+      String appId,
       String authorizationServerEncodedUrl) {
     this(new Builder(method,
         transport,
         jsonFactory,
         tokenServerUrl,
         clientAuthentication,
-        clientId,
+        appId,
         authorizationServerEncodedUrl));
   }
 
@@ -149,7 +149,7 @@ public class AuthorizationCodeFlow {
     jsonFactory = Preconditions.checkNotNull(builder.jsonFactory);
     tokenServerEncodedUrl = Preconditions.checkNotNull(builder.tokenServerUrl).build();
     clientAuthentication = builder.clientAuthentication;
-    clientId = Preconditions.checkNotNull(builder.clientId);
+    appId = Preconditions.checkNotNull(builder.appId);
     authorizationServerEncodedUrl =
         Preconditions.checkNotNull(builder.authorizationServerEncodedUrl);
     requestInitializer = builder.requestInitializer;
@@ -167,7 +167,7 @@ public class AuthorizationCodeFlow {
    * <p>
    * This is a builder for an authorization web page to allow the end user to authorize the
    * application to access their protected resources and that returns an authorization code. It uses
-   * the {@link #getAuthorizationServerEncodedUrl()}, {@link #getClientId()}, and
+   * the {@link #getAuthorizationServerEncodedUrl()}, {@link #getAppId()}, and
    * {@link #getScopes()}. Sample usage:
    * </p>
    *
@@ -182,7 +182,7 @@ public class AuthorizationCodeFlow {
    * </pre>
    */
   public AuthorizationCodeRequestUrl newAuthorizationUrl() {
-    return new AuthorizationCodeRequestUrl(authorizationServerEncodedUrl, clientId).setScopes(
+    return new AuthorizationCodeRequestUrl(authorizationServerEncodedUrl, appId).setScopes(
         scopes);
   }
 
@@ -323,8 +323,8 @@ public class AuthorizationCodeFlow {
   }
 
   /** Returns the client identifier. */
-  public final String getClientId() {
-    return clientId;
+  public final String getAppId() {
+    return appId;
   }
 
   /** Returns the authorization server encoded URL. */
@@ -443,7 +443,7 @@ public class AuthorizationCodeFlow {
     HttpExecuteInterceptor clientAuthentication;
 
     /** Client identifier. */
-    String clientId;
+    String appId;
 
     /** Authorization server encoded URL. */
     String authorizationServerEncodedUrl;
@@ -480,7 +480,7 @@ public class AuthorizationCodeFlow {
      * @param tokenServerUrl token server URL
      * @param clientAuthentication client authentication or {@code null} for none (see
      *        {@link TokenRequest#setClientAuthentication(HttpExecuteInterceptor)})
-     * @param clientId client identifier
+     * @param appId client identifier
      * @param authorizationServerEncodedUrl authorization server encoded URL
      */
     public Builder(AccessMethod method,
@@ -488,14 +488,14 @@ public class AuthorizationCodeFlow {
         JsonFactory jsonFactory,
         GenericUrl tokenServerUrl,
         HttpExecuteInterceptor clientAuthentication,
-        String clientId,
+        String appId,
         String authorizationServerEncodedUrl) {
       setMethod(method);
       setTransport(transport);
       setJsonFactory(jsonFactory);
       setTokenServerUrl(tokenServerUrl);
       setClientAuthentication(clientAuthentication);
-      setClientId(clientId);
+      setAppId(appId);
       setAuthorizationServerEncodedUrl(authorizationServerEncodedUrl);
     }
 
@@ -608,8 +608,8 @@ public class AuthorizationCodeFlow {
     }
 
     /** Returns the client identifier. */
-    public final String getClientId() {
-      return clientId;
+    public final String getAppId() {
+      return appId;
     }
 
     /**
@@ -621,8 +621,8 @@ public class AuthorizationCodeFlow {
      * </p>
      * @since 1.11
      */
-    public Builder setClientId(String clientId) {
-      this.clientId = Preconditions.checkNotNull(clientId);
+    public Builder setAppId(String appId) {
+      this.appId = Preconditions.checkNotNull(appId);
       return this;
     }
 

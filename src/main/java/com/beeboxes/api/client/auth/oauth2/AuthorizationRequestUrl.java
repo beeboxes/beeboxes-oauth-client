@@ -75,7 +75,7 @@ public class AuthorizationRequestUrl extends GenericUrl {
 
   /** Client identifier. */
   @Key("client_id")
-  private String clientId;
+  private String appId;
 
   /**
    * State (an opaque value used by the client to maintain state between the request and callback,
@@ -87,7 +87,7 @@ public class AuthorizationRequestUrl extends GenericUrl {
 
   /**
    * @param authorizationServerEncodedUrl authorization server encoded URL
-   * @param clientId client identifier
+   * @param appId client identifier
    * @param responseTypes <a href="http://tools.ietf.org/html/rfc6749#section-3.1.1">response
    *        type</a>, which must be {@code "code"} for requesting an authorization code,
    *        {@code "token"} for requesting an access token (implicit grant), or a list of registered
@@ -95,10 +95,10 @@ public class AuthorizationRequestUrl extends GenericUrl {
    * @since 1.15
    */
   public AuthorizationRequestUrl(
-      String authorizationServerEncodedUrl, String clientId, Collection<String> responseTypes) {
+      String authorizationServerEncodedUrl, String appId, Collection<String> responseTypes) {
     super(authorizationServerEncodedUrl);
     Preconditions.checkArgument(getFragment() == null);
-    setClientId(clientId);
+    setAppId(appId);
     setResponseTypes(responseTypes);
   }
 
@@ -184,8 +184,8 @@ public class AuthorizationRequestUrl extends GenericUrl {
   }
 
   /** Returns the client identifier. */
-  public final String getClientId() {
-    return clientId;
+  public final String getAppId() {
+    return appId;
   }
 
   /**
@@ -196,8 +196,8 @@ public class AuthorizationRequestUrl extends GenericUrl {
    * the return type, but nothing else.
    * </p>
    */
-  public AuthorizationRequestUrl setClientId(String clientId) {
-    this.clientId = Preconditions.checkNotNull(clientId);
+  public AuthorizationRequestUrl setAppId(String appId) {
+    this.appId = Preconditions.checkNotNull(appId);
     return this;
   }
 

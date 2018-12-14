@@ -54,10 +54,10 @@ public class AuthorizationCodeRequestUrl extends AuthorizationRequestUrl {
 
   /**
    * @param authorizationServerEncodedUrl authorization server encoded URL
-   * @param clientId client identifier
+   * @param appId client identifier
    */
-  public AuthorizationCodeRequestUrl(String authorizationServerEncodedUrl, String clientId) {
-    super(authorizationServerEncodedUrl, clientId, Collections.singleton("code"));
+  public AuthorizationCodeRequestUrl(String authorizationServerEncodedUrl, String appId) {
+    super(authorizationServerEncodedUrl, appId, Collections.singleton("code"));
   }
 
   @Override
@@ -76,8 +76,8 @@ public class AuthorizationCodeRequestUrl extends AuthorizationRequestUrl {
   }
 
   @Override
-  public AuthorizationCodeRequestUrl setClientId(String clientId) {
-    return (AuthorizationCodeRequestUrl) super.setClientId(clientId);
+  public AuthorizationCodeRequestUrl setAppId(String appId) {
+    return (AuthorizationCodeRequestUrl) super.setAppId(appId);
   }
 
   @Override

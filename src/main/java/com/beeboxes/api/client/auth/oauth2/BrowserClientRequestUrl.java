@@ -51,10 +51,10 @@ public class BrowserClientRequestUrl extends AuthorizationRequestUrl {
 
   /**
    * @param encodedAuthorizationServerUrl encoded authorization server URL
-   * @param clientId client identifier
+   * @param appId client identifier
    */
-  public BrowserClientRequestUrl(String encodedAuthorizationServerUrl, String clientId) {
-    super(encodedAuthorizationServerUrl, clientId, Collections.singleton("token"));
+  public BrowserClientRequestUrl(String encodedAuthorizationServerUrl, String appId) {
+    super(encodedAuthorizationServerUrl, appId, Collections.singleton("token"));
   }
 
   @Override
@@ -73,8 +73,8 @@ public class BrowserClientRequestUrl extends AuthorizationRequestUrl {
   }
 
   @Override
-  public BrowserClientRequestUrl setClientId(String clientId) {
-    return (BrowserClientRequestUrl) super.setClientId(clientId);
+  public BrowserClientRequestUrl setAppId(String appId) {
+    return (BrowserClientRequestUrl) super.setAppId(appId);
   }
 
   @Override
